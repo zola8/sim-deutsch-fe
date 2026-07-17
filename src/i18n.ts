@@ -22,5 +22,3 @@ i18n
   })
 
 export default i18n
-
-// TODO: React Native does not have localStorage!

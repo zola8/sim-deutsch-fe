@@ -35,7 +35,7 @@ export default function Layout() {
                   to="/"
                   className="flex items-center gap-2 text-xl sm:text-2xl font-bold text-olive-600 hover:text-olive-800 transition-colors"
                 >
-                  <img src={logo} width="50" height="50" alt="" className="shrink-0" />
+                  <img src={logo} width="40" height="40" alt="" className="shrink-0" />
                   Sim-Deutsch
                 </Link>
 
@@ -89,7 +89,7 @@ export default function Layout() {
                     {t(item.labelKey)}
                   </Link>
                 ))}
-                <div className="pt-3 mt-2 border-t border-olive-3 00">
+                <div className="pt-3 mt-2 border-t border-olive-300">
                   <LanguageSwitcher />
                 </div>
               </div>
