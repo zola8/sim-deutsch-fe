@@ -1,0 +1,14 @@
+{
+  "nav": {
+    "home": "Home",
+    "events": "Events",
+    "about": "About"
+  },
+  "home": {
+    "title": "Welcome to ...!",
+    "subtitle": "Discover ......."
+  },
+  "ui": {
+    "language": "Language"
+  }
+}
