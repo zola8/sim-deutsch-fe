@@ -6,7 +6,7 @@ export default function LanguageSwitcher() {
   const changeLanguage = (lang: string) => {
     i18n.changeLanguage(lang)
 
-    localStorage.setItem('akarmi_app_language', lang)
+    localStorage.setItem('sim_deutsch_lang', lang)
   }
 
   return (

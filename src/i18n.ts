@@ -4,7 +4,7 @@ import { initReactI18next } from 'react-i18next'
 import en from './locales/en.json'
 import hu from './locales/hu.json'
 
-const savedLanguage = localStorage.getItem('akarmi_app_language') || 'hu'
+const savedLanguage = localStorage.getItem('sim_deutsch_lang') || 'hu'
 
 
 i18n

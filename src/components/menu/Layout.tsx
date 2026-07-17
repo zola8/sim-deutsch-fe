@@ -2,7 +2,7 @@ import { Link, Outlet } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import { Disclosure, DisclosureButton, DisclosurePanel } from '@headlessui/react'
 import LanguageSwitcher from './LanguageSwitcher'
-
+import logo from '../../assets/logo-1-transparent.png'
 
 
 interface NavItem {
@@ -12,7 +12,7 @@ interface NavItem {
 
 const navConfig: NavItem[] = [
   { path: '/', labelKey: 'nav.home' },
-  { path: '/events', labelKey: 'nav.events' },
+  { path: '/chat', labelKey: 'nav.chat' },
   { path: '/about', labelKey: 'nav.about' },
 ]
 
@@ -33,9 +33,10 @@ export default function Layout() {
                 {/* Logo */}
                 <Link
                   to="/"
-                  className="text-xl sm:text-2xl font-bold text-olive-600 hover:text-olive-800 transition-colors"
+                  className="flex items-center gap-2 text-xl sm:text-2xl font-bold text-olive-600 hover:text-olive-800 transition-colors"
                 >
-                  Akármi-FE
+                  <img src={logo} width="50" height="50" alt="" className="shrink-0" />
+                  Sim-Deutsch
                 </Link>
 
                 {/* Desktop Menu (Hidden on mobile) */}
