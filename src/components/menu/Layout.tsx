@@ -14,6 +14,7 @@ const navConfig: NavItem[] = [
   { path: '/', labelKey: 'nav.home' },
   { path: '/chat', labelKey: 'nav.chat' },
   { path: '/about', labelKey: 'nav.about' },
+  { path: '/register', labelKey: 'nav.sign_up' },
 ]
 
 

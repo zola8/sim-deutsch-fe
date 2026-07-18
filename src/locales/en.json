@@ -2,7 +2,8 @@
   "nav": {
     "home": "Home",
     "chat": "Chat",
-    "about": "About"
+    "about": "About",
+    "sign_up": "Sign up"
   },
   "home": {
     "title": "Welcome to ...!",

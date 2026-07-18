@@ -2,7 +2,8 @@
   "nav": {
     "home": "Kezdőlap",
     "chat": "Chat",
-    "about": "Rólam"
+    "about": "Rólam",
+    "sign_up": "Regisztráció"
   },
   "home": {
     "title": "Üdvözöllek!",
