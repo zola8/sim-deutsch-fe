@@ -10,11 +10,13 @@ interface FieldProps {
   value: string;
   error?: string;
   touched?: boolean;
+  autoComplete?: string;
   onChange: (value: string) => void;
   onBlur: () => void;
+  disabled?: boolean
 }
 
-function FormFieldUI({ id, label, type, value, error, touched, onChange, onBlur }: FieldProps) {
+function FormFieldUI({ id, label, type, value, error, touched, autoComplete, onChange, onBlur }: FieldProps) {
   return (
     <div>
       <label htmlFor={id} className="block text-sm/6 font-medium text-gray-900">
@@ -26,6 +28,7 @@ function FormFieldUI({ id, label, type, value, error, touched, onChange, onBlur 
           name={id}
           type={type}
           value={value}
+          autoComplete={autoComplete}
           onChange={(e) => onChange(e.target.value)}
           onBlur={onBlur}
           className={inputClass}
@@ -37,11 +40,26 @@ function FormFieldUI({ id, label, type, value, error, touched, onChange, onBlur 
 }
 
 export default function RegisterForm() {
-  const { formData, errors, touched, handleChange, handleBlur, handleSubmit } =
-    useRegisterForm();
+  const {
+    formData,
+    errors,
+    touched,
+    submitting,
+    serverError,
+    handleChange,
+    handleBlur,
+    handleSubmit,
+  } = useRegisterForm();
 
   return (
     <form onSubmit={handleSubmit} className="space-y-6">
+
+      {serverError && (
+        <div className="rounded-md bg-red-50 p-3 text-sm text-red-700">
+          {serverError}
+        </div>
+      )}
+
       <FormFieldUI
         id="email"
         label="Email address"
@@ -49,8 +67,10 @@ export default function RegisterForm() {
         value={formData.email}
         error={errors.email}
         touched={touched.email}
+        autoComplete="email"
         onChange={(v) => handleChange('email', v)}
         onBlur={() => handleBlur('email')}
+        disabled={submitting}
       />
       <FormFieldUI
         id="username"
@@ -59,8 +79,10 @@ export default function RegisterForm() {
         value={formData.username}
         error={errors.username}
         touched={touched.username}
+        autoComplete="username"
         onChange={(v) => handleChange('username', v)}
         onBlur={() => handleBlur('username')}
+        disabled={submitting}
       />
       <FormFieldUI
         id="password"
@@ -69,8 +91,10 @@ export default function RegisterForm() {
         value={formData.password}
         error={errors.password}
         touched={touched.password}
+        autoComplete="new-password"
         onChange={(v) => handleChange('password', v)}
         onBlur={() => handleBlur('password')}
+        disabled={submitting}
       />
       <FormFieldUI
         id="passwordRepeat"
@@ -79,15 +103,18 @@ export default function RegisterForm() {
         value={formData.passwordRepeat}
         error={errors.passwordRepeat}
         touched={touched.passwordRepeat}
+        autoComplete="new-password"
         onChange={(v) => handleChange('passwordRepeat', v)}
         onBlur={() => handleBlur('passwordRepeat')}
+        disabled={submitting}
       />
       <div>
         <button
           type="submit"
+          disabled={submitting}
           className="flex w-full justify-center rounded-md bg-olive-600 px-3 py-1.5 text-sm/6 font-semibold text-white shadow-xs hover:bg-olive-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-olive-600"
         >
-          OK
+          {submitting ? 'Creating account...' : 'OK'}
         </button>
       </div>
     </form>

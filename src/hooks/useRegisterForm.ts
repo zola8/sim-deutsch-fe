@@ -1,10 +1,15 @@
+// hooks/ knows about form state
+
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import {
   validateEmail,
   validateUsername,
   validatePassword,
   validatePasswordRepeat,
 } from '../utils/user_validation';
+import { registerUser, ApiError } from '../api/users';
+
 
 export type FormField = 'email' | 'username' | 'password' | 'passwordRepeat';
 
@@ -16,6 +21,7 @@ export interface RegisterFormData {
 }
 
 export function useRegisterForm() {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState<RegisterFormData>({
     email: '',
     username: '',
@@ -25,6 +31,9 @@ export function useRegisterForm() {
 
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [touched, setTouched] = useState<Record<string, boolean>>({});
+  const [submitting, setSubmitting] = useState(false);
+  const [serverError, setServerError] = useState<string | null>(null);
+
 
   const validateField = (field: FormField, value: string): string => {
     switch (field) {
@@ -63,16 +72,16 @@ export function useRegisterForm() {
     }));
   };
 
-  const handleSubmit = (e: React.SubmitEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.SubmitEvent<HTMLFormElement>) => {
     e.preventDefault();
+    setServerError(null);
 
-    const allTouched: Record<string, boolean> = {
+    setTouched({
       email: true,
       username: true,
       password: true,
       passwordRepeat: true,
-    };
-    setTouched(allTouched);
+    });
 
     const newErrors = {
       email: validateEmail(formData.email),
@@ -85,8 +94,24 @@ export function useRegisterForm() {
     };
     setErrors(newErrors);
 
-    if (Object.values(newErrors).every((error) => error === '')) {
-      console.log('Form submitted:', formData);
+    if (!Object.values(newErrors).every((error) => error === '')) return;
+
+    setSubmitting(true);
+    try {
+      const response = await registerUser(formData);
+
+      console.log('Registration successful:', response);
+      // TODO verification page
+      navigate('/verify', { state: { email: formData.email } });
+
+    } catch (err) {
+      if (err instanceof ApiError) {
+        setServerError(err.message);
+      } else {
+        setServerError('Network error. Please try again.');
+      }
+    } finally {
+      setSubmitting(false);
     }
   };
 
@@ -94,8 +119,11 @@ export function useRegisterForm() {
     formData,
     errors,
     touched,
+    submitting,
+    serverError,
     handleChange,
     handleBlur,
     handleSubmit,
   };
+
 }

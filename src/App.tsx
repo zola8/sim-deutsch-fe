@@ -5,7 +5,7 @@ import AboutPage from './pages/AboutPage'
 import NotFoundPage from './pages/NotFound'
 import ChatPage from './pages/ChatPage'
 import RegisterPage from './pages/users/Register'
-import LoginPage from './pages/users/Login'
+import LoginPage from './pages/users/LoginPage'
 
 function App() {
 

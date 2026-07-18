@@ -1,3 +1,5 @@
+// utils/ knows about rules
+
 export const validateEmail = (email: string): string => {
   if (!email) return 'Email is required';
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
