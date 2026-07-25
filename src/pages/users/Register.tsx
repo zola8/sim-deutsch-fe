@@ -1,4 +1,4 @@
-import RegisterForm from '../../components/users/RegisterForm';
+import RegisterWithPasswordForm from '../../components/users/RegisterWithPasswordForm';
 
 export default function RegisterPage() {
   return (
@@ -10,7 +10,7 @@ export default function RegisterPage() {
       </div>
 
       <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-        <RegisterForm />
+        <RegisterWithPasswordForm />
 
         <p className="mt-10 text-center text-sm/6 text-gray-500">
           Already have an account?

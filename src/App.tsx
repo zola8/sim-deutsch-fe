@@ -6,6 +6,7 @@ import NotFoundPage from './pages/NotFound'
 import ChatPage from './pages/ChatPage'
 import RegisterPage from './pages/users/Register'
 import LoginPage from './pages/users/LoginPage'
+import RegisterActivatePage from './pages/users/RegisterActivate'
 
 function App() {
 
@@ -16,6 +17,7 @@ function App() {
         <Route path="/chat" element={<ChatPage />} />
         <Route path="/about" element={<AboutPage />} />
         <Route path="/register" element={<RegisterPage />} />
+        <Route path="/activate" element={<RegisterActivatePage />} />
         <Route path="/login" element={<LoginPage />} />
 
         <Route path="*" element={<NotFoundPage />} />

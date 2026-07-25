@@ -1,4 +1,4 @@
-import { useRegisterForm, type FormField } from '../../hooks/useRegisterForm';
+import { useRegisterFormWithPassword, type FormField } from '../../hooks/useRegisterFormWithPassword';
 
 const inputClass =
   'block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-olive-600 sm:text-sm/6';
@@ -39,7 +39,7 @@ function FormFieldUI({ id, label, type, value, error, touched, autoComplete, onC
   );
 }
 
-export default function RegisterForm() {
+export default function RegisterWithPasswordForm() {
   const {
     formData,
     errors,
@@ -49,7 +49,7 @@ export default function RegisterForm() {
     handleChange,
     handleBlur,
     handleSubmit,
-  } = useRegisterForm();
+  } = useRegisterFormWithPassword();
 
   return (
     <form onSubmit={handleSubmit} className="space-y-6">
